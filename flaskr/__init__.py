@@ -7,6 +7,7 @@ def create_app(test_config=None):
     app.config.from_mapping(
         SECRET_KEY = 'dev',
         SQLALCHEMY_DATABASE_URI = 'sqlite:///data.db',
+        SQLALCHEMY_TRACK_MODIFICATIONS = False,
     )
 
     if test_config is None:
@@ -23,5 +24,11 @@ def create_app(test_config=None):
     @app.route('/hello')
     def hello():
         return "Hello, World!"
+    
+    from .db import db
+    db.init_app(app)
+    with app.app_context():
+        db.create_all()
+
 
     return app
