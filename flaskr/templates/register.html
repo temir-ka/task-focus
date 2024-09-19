@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block title %}Registration{% endblock %}
+
+{% block content %}
+
+<div class="form">
+    <div class="login-container">
+        <form class="login-form" method="post">
+            <h2>Register</h2>
+            <div class="input-group">
+                <label for="username">Username</label>
+                <input name="username" type="text" id="username" placeholder="Enter your username">
+            </div>
+            <div class="input-group">
+                <label for="password">Password</label>
+                <input name="password" type="password" id="password" placeholder="Enter your password">
+            </div>
+            <button type="submit">Register</button>
+        </form>
+    </div>
+</div>
+
+{% endblock %}
