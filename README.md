@@ -24,42 +24,29 @@ Prerequisites
 
 Installation Steps
 
-    Clone the repository:
+1) Clone the repository:
 
-    bash
+        git clone https://github.com/your-username/task-focus.git
+        cd task-focus
 
-git clone https://github.com/your-username/task-focus.git
-cd task-focus
+2) Set up a virtual environment (optional but recommended):
 
-Set up a virtual environment (optional but recommended):
+        python -m venv venv
+        source venv/bin/activate  # On Windows: venv\Scripts\activate
 
-bash
+3) Install required dependencies:
 
-python -m venv venv
-source venv/bin/activate  # On Windows: venv\Scripts\activate
+        pip install -r requirements.txt
 
-Install required dependencies:
+4) Set up the SQLite database:
 
-bash
+        from app import db
+        db.create_all()
 
-pip install -r requirements.txt
+5) Run the application:
 
-Set up the SQLite database:
-
-Run the following command in a Python shell to initialize the database:
-
-python
-
-from app import db
-db.create_all()
-
-Run the application:
-
-bash
-
-    flask run
-
-    The application will be available at http://127.0.0.1:5000/.
+        flask run
+The application will be available at http://127.0.0.1:5000/.
 
 Usage
 
