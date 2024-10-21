@@ -17,7 +17,6 @@ body {
 	height: 100%;
 	font-family: "Montserrat", sans-serif;
 	-webkit-font-smoothing: antialiased;
-	font-smoothing: antialiased;
 }
 
 h1,
@@ -1825,7 +1824,7 @@ Responsive
     align-items: center; 
 }
 
-.login-container {
+.form-container {
     background-color: #151A30;
     border-radius: 10px;
     padding: 2rem;
@@ -1833,7 +1832,7 @@ Responsive
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
 }
 
-.login-form h2 {
+.fill-form h2 {
     color: #FA3265;
     text-align: center;
     margin-bottom: 20px;
@@ -1860,6 +1859,20 @@ Responsive
 
 .input-group input:focus {
     outline: none;
+    border: 1px solid #FA3265;
+}
+
+.input-group textarea {
+	width: 100%;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: #2E344E;
+    color: #c7c9d3;
+}
+
+.input-group textarea:focus {
+	outline: none;
     border: 1px solid #FA3265;
 }
 
@@ -1933,4 +1946,170 @@ button:hover {
 @keyframes fadeout {
     from { opacity: 1; }
     to { opacity: 0; }
+}
+
+
+.task-container {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 20px;
+	justify-content: center;
+}
+
+.task {
+	position: relative;
+	display: flex;
+	align-items: center;
+	background: linear-gradient(135deg, #162a4a, #1b3d66); /* Градиентный фон */
+	border-radius: 15px;
+	padding: 20px;
+	box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3);
+	width: 22%; /* Примерно 4 карточки в ряд */
+	min-width: 220px;
+	max-width: 280px;
+	transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+	flex-direction: column;
+	justify-content: space-between;
+
+}
+  
+.task:hover {
+	transform: translateY(-10px); /* Подъем карточки при наведении */
+	box-shadow: 0 12px 25px rgba(0, 0, 0, 0.4);
+  }
+  
+.task-checkbox {
+	position: absolute;
+	top: 20px;
+	left: 20px;
+	transform: scale(1.5);
+	cursor: pointer;
+  }
+  
+.task-details {
+	margin-left: 50px; /* Отступ для чекбокса */
+	color: #fff;
+  }
+  
+.task-title {
+	margin: 0 0 10px 0;
+	color: #ffeb3b; /* Яркий заголовок */
+	letter-spacing: 0.5px;
+  }
+  
+.task-deadline {
+	color: #e06b6b; /* Красный для дедлайна */
+  }
+  
+.task-checkbox:checked + .task-details {
+	text-decoration: line-through;
+	opacity: 0.6;
+  }
+  
+  @media (max-width: 1024px) {
+	.task {
+	  width: 45%; /* 2 карточки на ряд на средних экранах */
+	}
+  }
+  
+  @media (max-width: 768px) {
+	.task {
+	  width: 100%; /* 1 карточка на ряд на маленьких экранах */
+	}
+  }
+
+.tasks-wrapper {
+	padding-top: 5%;
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    margin: 20px;
+	height: 100vh;
+	overflow-y: auto;
+	justify-content: space-between;
+}
+
+.section {
+    width: 100%;
+}
+
+.section-title {
+    text-align: center; /* Центрирование заголовка */
+    font-size: 24px; /* Размер шрифта */
+    color: #ffeb3b; /* Цвет заголовка */
+    background: linear-gradient(135deg, #162a4a, #1b3d66); /* Градиентный фон */
+    padding: 10px; /* Отступы вокруг заголовка */
+    border-radius: 10px; /* Скругленные углы */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* Тень под заголовком */
+    margin-bottom: 20px; /* Отступ снизу */
+    font-weight: bold; /* Полужирный текст */
+    letter-spacing: 1px; /* Расстояние между буквами */
+}
+
+.task-actions {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 20px;
+}
+
+.edit-button,
+.delete-button {
+    color: #fff;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+/* Стили для кнопки Edit */
+.edit-button {
+    background-color: #ffeb3b; /* Желтый цвет для редактирования, гармонирующий с заголовком */
+    color: #162a4a; /* Темный цвет для контраста */
+}
+
+.edit-button:hover {
+    background-color: #ffd700; /* Более насыщенный оттенок при наведении */
+}
+
+/* Стили для кнопки Delete */
+.delete-button {
+    background-color: #e06b6b; /* Красноватый оттенок, гармонирующий с цветом дедлайна */
+    color: #fff; /* Белый текст для контраста */
+}
+
+.delete-button:hover {
+    background-color: #c94c4c; /* Более темный оттенок красного при наведении */
+}
+
+.analytics-container {
+    margin: 50px auto;
+    padding: 30px;
+    max-width: 800px;
+    background-color: #151a30; /* Темно-синий фон */
+    border-radius: 10px;
+    color: #fa3265; /* Яркий розовый для текста */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5); /* Легкая тень для объема */
+}
+
+.analytics-item {
+    margin-bottom: 20px;
+    padding: 15px;
+    border-bottom: 1px solid #2a2f45; /* Более светлый оттенок для разделения */
+    display: flex;
+    justify-content: space-between; /* Распределение текста и чисел по краям */
+}
+
+.analytics-item h3 {
+    margin: 0;
+    font-size: 1.5rem;
+    color: #fa3265; /* Цвет текста розовый */
+    font-weight: 500; /* Средняя толщина текста */
+}
+
+.analytics-item .value {
+    font-size: 1.8rem;
+    font-weight: 600;
+    color: #ffdc73; /* Золотистый цвет для цифр */
 }

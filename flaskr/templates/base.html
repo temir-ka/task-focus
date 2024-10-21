@@ -51,10 +51,10 @@
 		</div>
 		{% endif %}
 		<ul class="main-menu">
-			<li><a href="{{ url_for('hello') }}">Home</a></li>
+			<li><a href="{{ url_for('profile.home') }}">Home</a></li>
             {% if current_user.is_authenticated %}
-			    <li><a href="#">New task</a></li>
-			    <li><a href="#">Analytics</a></li>
+			    <li><a href="{{ url_for('profile.create') }}">New task</a></li>
+			    <li><a href="{{ url_for('profile.analytics') }}">Analytics</a></li>
 				<li><a href="{{ url_for('auth.logout') }}">Log out</a></li>
             {% endif %}
 		</ul>

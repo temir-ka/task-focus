@@ -44,7 +44,7 @@ def register():
 @bp.route('/login', methods=['GET', 'POST'])
 def login():
     if current_user.is_authenticated:
-        return redirect(url_for('hello'))  
+        return redirect(url_for('profile.home'))  
     
     if request.method == 'POST':
         username = request.form['username']
@@ -61,7 +61,7 @@ def login():
         if error is None:
             login_user(user)
             flash('Successfully logged in', 'success')
-            return redirect(url_for('hello'))
+            return redirect(url_for('profile.home'))
         
         flash(error, 'danger')
 
@@ -73,7 +73,7 @@ def login():
 def logout():
     logout_user()
     flash('Successfully logged out', 'success')
-    return redirect(url_for('hello'))
+    return redirect(url_for('profile.home'))
 
 
 @login_manager.user_loader

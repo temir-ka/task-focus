@@ -19,18 +19,18 @@ def create_app(test_config=None):
         os.makedirs(app.instance_path)
     except OSError:
         pass
-
-    @app.route('/hello')
-    def hello():
-        return render_template('index.html')
     
     from .db import db
     db.init_app(app)
     with app.app_context():
+        db.drop_all()
         db.create_all()
 
     from . import auth
     auth.login_manager.init_app(app)
     app.register_blueprint(auth.bp)
+
+    from . import profile
+    app.register_blueprint(profile.bp)
 
     return app

@@ -7,16 +7,76 @@
 <section class="hero-section">
 	<div class="hero-slider owl-carousel">
 		<div class="hs-item">
-			<div class="container">
-				<div class="row">
-					<div class="col-lg-6">
-						<div class="hs-text">
-							<h2><span>Organize</span> your time.</h2>
-							<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis ipsum suspendisse ultrices gravida. </p>
+			{% if not current_user.is_authenticated %}
+				<div class="container">
+					<div class="row">
+						<div class="col-lg-6">
+							<div class="hs-text">
+								<h2><span>Organize</span> your time.</h2>
+								<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis ipsum suspendisse ultrices gravida. </p>
+							</div>
 						</div>
 					</div>
 				</div>
-			</div>
+			{% endif %}
+			
+			{% if current_user.is_authenticated %}
+				<div class="tasks-wrapper">
+					<div class="section">
+						<h3 class="section-title">Incomplete Tasks</h3>
+						<div class="task-container">
+							{% for task in tasks if not task.completed %}
+							<div class="task">
+								<form method="POST" action="/update_task_status">
+									<input type="hidden" name="task_id" value="{{ task.id }}">
+									<input type="checkbox" name="completed" class="task-checkbox" onchange="this.form.submit()">
+									<label class="task-details">
+										<h5 class="task-title">{{ task.title }}</h5>
+										<p class="task-deadline">Deadline: {{ task.deadline.strftime('%Y-%m-%d') }}</p>
+									</label>
+								</form>
+								<div class="task-actions">
+									<form method="GET" action="{{ url_for('profile.edit_task', task_id=task.id) }}" style="display:inline;">
+										<button type="submit" class="edit-button">Edit</button>
+									</form>
+									<form method="POST" action="{{ url_for('profile.delete_task', task_id=task.id) }}" style="display:inline;">
+										<button type="submit" class="delete-button">Delete</button>
+									</form>
+								</div>
+							</div>
+							{% endfor %}
+						</div>
+					</div>
+
+					<div class="section">
+						<h3 class="section-title">Completed Tasks</h3>
+						<div class="task-container">
+							{% for task in tasks if task.completed %}
+								<div class="task">
+									<form method="POST" action="/update_task_status">
+										<input type="hidden" name="task_id" value="{{ task.id }}">
+										<input type="checkbox" name="completed" class="task-checkbox" checked onchange="this.form.submit()">
+										<label class="task-details">
+											<h5 class="task-title">{{ task.title }}</h5>
+											<p class="task-deadline">Deadline: {{ task.deadline.strftime('%Y-%m-%d') }}</p>
+										</label>
+									</form>
+									<div class="task-actions">
+										<form method="GET" action="{{ url_for('profile.edit_task', task_id=task.id) }}" style="display:inline;">
+											<button type="submit" class="edit-button">Edit</button>
+										</form>
+										<form method="POST" action="{{ url_for('profile.delete_task', task_id=task.id) }}" style="display:inline;">
+											<button type="submit" class="delete-button">Delete</button>
+										</form>
+									</div>
+								</div>
+							{% endfor %}
+						</div>
+					</div>
+				</div>
+			{% endif %}
+
+
 		</div>
 	</div>
 </section>
